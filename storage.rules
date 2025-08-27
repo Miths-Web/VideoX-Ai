@@ -1,0 +1,40 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    function isValidVideo() {
+      return request.resource.contentType.matches('video/.*') &&
+             request.resource.size < 500 * 1024 * 1024; // 500MB max
+    }
+    
+    // User videos
+    match /users/{userId}/videos/{videoId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId) && isValidVideo();
+      allow update: if isOwner(userId) && isValidVideo();
+      allow delete: if isOwner(userId);
+    }
+    
+    // Enhanced videos
+    match /enhanced/{userId}/{videoId} {
+      allow read: if isOwner(userId);
+      allow create: if false; // Only allow creation through Cloud Functions
+      allow update: if false;
+      allow delete: if isOwner(userId);
+    }
+    
+    // Temporary processing files
+    match /processing/{userId}/{videoId}/{fileName} {
+      allow read: if isOwner(userId);
+      allow write: if false; // Only allow writes through Cloud Functions
+    }
+  }
+}
