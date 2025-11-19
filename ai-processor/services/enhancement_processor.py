@@ -311,7 +311,7 @@ class EnhancementProcessor:
             print(f"Denoising failed: {e}")
             return frame
 
-    async def _apply_color_enhancement(self, frame: np.ndarray, settings) -> np.ndarray:
+    async def _apply_color_enhancement(self, frame: 'np.ndarray', settings) -> 'np.ndarray':
         """
         Apply color enhancement
         """
