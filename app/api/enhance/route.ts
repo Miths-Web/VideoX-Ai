@@ -5,7 +5,7 @@ import { getFirestore } from 'firebase-admin/firestore';
 
 export async function POST(request: NextRequest) {
   try {
-    const { videoId, settings } = await request.json();
+    const { videoId, settings, file } = await request.json();
     const authToken = request.headers.get('authorization')?.replace('Bearer ', '');
 
     if (!authToken || !videoId) {
@@ -38,47 +38,15 @@ export async function POST(request: NextRequest) {
       updatedAt: new Date(),
     });
 
-    // Simulate video enhancement process
-    // In real implementation, you would call actual AI service here
-    const enhanceVideo = async () => {
-      const progressSteps = [10, 25, 45, 65, 80, 95, 100];
-      
-      for (const progress of progressSteps) {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // 2 second delay
-        
-        if (progress === 100) {
-          // Final update with enhanced URL (mock)
-          await videoRef.update({
-            status: 'completed',
-            progress: 100,
-            enhancedUrl: videoData.originalUrl, // In real app, this would be the enhanced video URL
-            enhancedResolution: settings.resolution || '4K',
-            enhancedSize: Math.floor(videoData.originalSize * 1.5), // Mock enhanced size
-            updatedAt: new Date(),
-          });
-        } else {
-          await videoRef.update({
-            progress: progress,
-            updatedAt: new Date(),
-          });
-        }
-      }
-    };
-
-    // Start enhancement process asynchronously
-    enhanceVideo().catch(error => {
-      console.error('Enhancement error:', error);
-      videoRef.update({
-        status: 'failed',
-        error: error.message,
-        updatedAt: new Date(),
-      });
-    });
+    // Start real video enhancement process
+    // The actual enhancement will be triggered from the frontend using VideoService
+    // This endpoint now just updates the database status
 
     return NextResponse.json({
       success: true,
-      message: 'Enhancement started',
+      message: 'Enhancement ready to start',
       videoId,
+      settings: settings,
     });
 
   } catch (error) {
