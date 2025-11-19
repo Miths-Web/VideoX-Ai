@@ -36,7 +36,11 @@ class EnhancementProcessor:
     async def initialize(self):
         """Initialize AI models and GPU setup"""
         if not DEPENDENCIES_AVAILABLE:
-            raise RuntimeError(f"Missing dependencies: {MISSING_DEPENDENCY}")
+            print(f"⚠️  AI dependencies not available - running in simulation mode")
+            print(f"Missing: {MISSING_DEPENDENCY}")
+            self.device = 'cpu'
+            self.is_initialized = True
+            return
 
         # Check GPU availability
         if torch.cuda.is_available():
