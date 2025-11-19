@@ -2,16 +2,35 @@
 'use client';
 
 import React, { useState, useRef, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Progress } from '@/components/ui/progress';
+import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import { VideoService } from '@/lib/videoService';
-import { Upload, Play, Download, Settings, Sparkles, Zap, Film, Palette } from 'lucide-react';
+import {
+  Upload,
+  Download,
+  Settings,
+  Sparkles,
+  Zap,
+  Film,
+  Palette,
+  Play,
+  Pause,
+  CheckCircle2,
+  Loader2,
+  FileVideo,
+  Cpu,
+  HD,
+  Volume2,
+  Activity,
+  Clock
+} from 'lucide-react';
 
 const EnhancePage = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
