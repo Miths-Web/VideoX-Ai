@@ -209,19 +209,43 @@ export class VideoService {
     task_id: string;
     status: string;
     progress: number;
-    download_url?: string;
+    current_stage?: string;
+    stages?: Record<string, number>;
+    estimated_remaining?: number;
     error?: string;
   }> {
     try {
       const response = await fetch(`${this.API_BASE}/api/status/${taskId}`);
-      
+
       if (!response.ok) {
+        if (response.status === 404) {
+          throw new Error('Task not found');
+        }
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      return await response.json();
+      const result = await response.json();
+
+      if (!result.success) {
+        throw new Error(result.error || 'Status check failed');
+      }
+
+      return {
+        task_id: result.task_id,
+        status: result.status,
+        progress: result.progress,
+        current_stage: result.current_stage,
+        stages: result.stages,
+        estimated_remaining: result.estimated_remaining,
+        error: result.error
+      };
     } catch (error) {
       console.error('Error getting enhancement status:', error);
+
+      if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+        throw new Error('Unable to connect to enhancement service. Please check your connection and try again.');
+      }
+
       throw error;
     }
   }
