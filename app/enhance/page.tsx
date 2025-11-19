@@ -99,14 +99,26 @@ const EnhancePage = () => {
     }
   };
 
-  const handleDownload = () => {
-    if (enhancedVideoUrl) {
-      const link = document.createElement('a');
-      link.href = VideoService.getEnhancedVideoUrl(enhancedVideoUrl.split('/').pop() || '');
-      link.download = `enhanced_${selectedFile?.name || 'video.mp4'}`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+  const handleDownload = async () => {
+    if (enhancedVideoUrl && selectedFile) {
+      try {
+        setIsProcessing(true);
+        const blob = await VideoService.downloadEnhancedVideo(enhancedVideoUrl);
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `enhanced_${selectedFile.name}`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        toast.success('Enhanced video downloaded successfully!');
+      } catch (error) {
+        console.error('Download error:', error);
+        toast.error('Failed to download enhanced video');
+      } finally {
+        setIsProcessing(false);
+      }
     }
   };
 
