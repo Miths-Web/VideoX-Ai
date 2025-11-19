@@ -265,9 +265,9 @@ const EnhancePage = () => {
               <div className="flex items-center space-x-2">
                 <Switch
                   id="denoise"
-                  checked={settings.denoise}
-                  onCheckedChange={(checked) => 
-                    setSettings(prev => ({ ...prev, denoise: checked }))
+                  checked={settings.denoising}
+                  onCheckedChange={(checked) =>
+                    setSettings(prev => ({ ...prev, denoising: checked }))
                   }
                 />
                 <Label htmlFor="denoise">AI Denoising</Label>
@@ -275,9 +275,9 @@ const EnhancePage = () => {
               <div className="flex items-center space-x-2">
                 <Switch
                   id="color_enhance"
-                  checked={settings.color_enhance}
-                  onCheckedChange={(checked) => 
-                    setSettings(prev => ({ ...prev, color_enhance: checked }))
+                  checked={settings.color_enhancement}
+                  onCheckedChange={(checked) =>
+                    setSettings(prev => ({ ...prev, color_enhancement: checked }))
                   }
                 />
                 <Label htmlFor="color_enhance">Color Enhancement</Label>
@@ -285,9 +285,9 @@ const EnhancePage = () => {
               <div className="flex items-center space-x-2">
                 <Switch
                   id="stabilize"
-                  checked={settings.stabilize}
-                  onCheckedChange={(checked) => 
-                    setSettings(prev => ({ ...prev, stabilize: checked }))
+                  checked={settings.stabilization}
+                  onCheckedChange={(checked) =>
+                    setSettings(prev => ({ ...prev, stabilization: checked }))
                   }
                 />
                 <Label htmlFor="stabilize">Video Stabilization</Label>
