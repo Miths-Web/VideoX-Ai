@@ -294,7 +294,7 @@ class EnhancementProcessor:
             print(f"Super resolution failed: {e}")
             return frame
 
-    async def _apply_denoising(self, frame: np.ndarray, settings) -> np.ndarray:
+    async def _apply_denoising(self, frame: 'np.ndarray', settings) -> 'np.ndarray':
         """
         Apply denoising enhancement
         """
