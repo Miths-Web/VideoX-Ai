@@ -250,17 +250,26 @@ export class VideoService {
     }
   }
 
-  static async downloadEnhancedVideo(filename: string): Promise<Blob> {
+  static async downloadEnhancedVideo(taskId: string): Promise<Blob> {
     try {
-      const response = await fetch(`${this.API_BASE}/api/download/${filename}`);
-      
+      const response = await fetch(`${this.API_BASE}/api/download/${taskId}`);
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        if (response.status === 404) {
+          throw new Error('Enhanced video not found or not ready');
+        }
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
       }
 
       return await response.blob();
     } catch (error) {
       console.error('Error downloading enhanced video:', error);
+
+      if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+        throw new Error('Unable to connect to enhancement service. Please check your connection and try again.');
+      }
+
       throw error;
     }
   }
