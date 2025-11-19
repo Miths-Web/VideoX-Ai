@@ -333,7 +333,7 @@ class EnhancementProcessor:
             print(f"Color enhancement failed: {e}")
             return frame
 
-    async def _apply_restoration(self, frame: np.ndarray, settings) -> np.ndarray:
+    async def _apply_restoration(self, frame: 'np.ndarray', settings) -> 'np.ndarray':
         """
         Apply video restoration (combination of enhancements)
         """
