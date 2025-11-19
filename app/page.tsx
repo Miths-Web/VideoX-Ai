@@ -192,16 +192,28 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-muted/50">
+      <section className="py-24 bg-gradient-to-br from-white via-slate-50 to-blue-50/30">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Powerful AI Video Enhancement</h2>
-            <p className="text-lg text-muted-foreground">
-              Our cutting-edge AI technology transforms your videos with these powerful features
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-center max-w-4xl mx-auto mb-20"
+          >
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600/10 to-purple-600/10 backdrop-blur-sm border border-blue-200/50 rounded-full px-4 py-2 mb-6">
+              <Sparkles className="w-4 h-4 text-blue-600" />
+              <span className="text-sm font-medium text-blue-700">AI-Powered Features</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-br from-slate-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
+              Why Choose VideoX AI?
+            </h2>
+            <p className="text-xl text-slate-600 leading-relaxed">
+              Experience the future of video enhancement with our cutting-edge AI technology
             </p>
-          </div>
-          
-          <motion.div 
+          </motion.div>
+
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -212,11 +224,16 @@ export default function Home() {
               <motion.div
                 key={index}
                 variants={fadeIn}
-                className="bg-background/50 backdrop-blur-sm border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow"
+                className="group relative"
               >
-                <div className="mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl transform group-hover:scale-105 transition-transform duration-300"></div>
+                <div className="relative bg-white/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-slate-800">{feature.title}</h3>
+                  <p className="text-slate-600 leading-relaxed">{feature.description}</p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
