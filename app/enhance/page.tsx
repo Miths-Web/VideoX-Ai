@@ -234,10 +234,10 @@ const EnhancePage = () => {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="hd">HD (1920x1080)</SelectItem>
-                  <SelectItem value="2k">2K (2560x1440)</SelectItem>
-                  <SelectItem value="4k">4K (3840x2160)</SelectItem>
-                  <SelectItem value="8k">8K (7680x4320)</SelectItem>
+                  <SelectItem value="720p">HD (1280x720)</SelectItem>
+                  <SelectItem value="1080p">Full HD (1920x1080)</SelectItem>
+                  <SelectItem value="4K">4K (3840x2160)</SelectItem>
+                  <SelectItem value="8K">8K (7680x4320)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
