@@ -356,7 +356,7 @@ const EnhancePage = () => {
                   <video
                     controls
                     className="w-full rounded-lg"
-                    src={VideoService.getEnhancedVideoUrl(enhancedVideoUrl.split('/').pop() || '')}
+                    src={VideoService.getEnhancedVideoUrl(enhancedVideoUrl)}
                   />
                 </div>
               </div>
