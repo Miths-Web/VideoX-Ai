@@ -19,9 +19,9 @@ const EnhancePage = () => {
   const [settings, setSettings] = useState({
     resolution: '4K',
     fps: '30',
-    denoise: true,
-    color_enhance: true,
-    stabilize: false
+    denoising: true,
+    color_enhancement: true,
+    stabilization: false
   });
   const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
