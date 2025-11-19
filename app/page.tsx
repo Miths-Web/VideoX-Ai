@@ -302,31 +302,66 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary/5">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+      <section className="py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 relative overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-20 w-32 h-32 bg-white/10 rounded-full blur-xl" />
+          <div className="absolute bottom-10 right-20 w-48 h-48 bg-white/5 rounded-full blur-2xl" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-5xl mx-auto text-center">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              className="space-y-8"
             >
-              <h2 className="text-3xl md:text-4xl font-bold">Ready to Transform Your Videos?</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Join thousands of content creators, filmmakers, and businesses who are already using VidioX AI to enhance their videos.
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2">
+                <Sparkles className="w-4 h-4 text-yellow-300" />
+                <span className="text-sm font-medium text-white">Join 10,000+ Creators</span>
+              </div>
+
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                Ready to Transform
+                <br />
+                Your Videos Today?
+              </h2>
+
+              <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+                Join thousands of content creators, filmmakers, and businesses who are already using VideoX AI to enhance their videos with cutting-edge AI technology.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" asChild>
-                  <Link href="/enhance">
+
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <Button size="lg" asChild className="group bg-white text-blue-600 hover:bg-blue-50 border-0 px-8 py-4 text-lg font-semibold">
+                  <Link href="/enhance" className="flex items-center">
                     Start Enhancing Now
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link href="/pricing">
-                    View Pricing
+                <Button size="lg" variant="outline" asChild className="border-white/20 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg">
+                  <Link href="/enhance">
+                    <Video className="mr-2 h-5 w-5" />
+                    Try Free Demo
                   </Link>
                 </Button>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-center gap-8 text-white/80 text-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-green-400" />
+                  <span>No credit card required</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-green-400" />
+                  <span>Free 3 video trials</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-green-400" />
+                  <span>Instant results</span>
+                </div>
               </div>
             </motion.div>
           </div>
