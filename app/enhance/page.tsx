@@ -53,10 +53,9 @@ const EnhancePage = () => {
 
       if (status.status === 'completed') {
         setIsProcessing(false);
-        if (status.download_url) {
-          setEnhancedVideoUrl(status.download_url);
-          toast.success('Video enhancement completed successfully!');
-        }
+        // Use taskId to download enhanced video
+        setEnhancedVideoUrl(taskId);
+        toast.success('Video enhancement completed successfully!');
       } else if (status.status === 'failed') {
         setIsProcessing(false);
         toast.error(`Enhancement failed: ${status.error || 'Unknown error'}`);
