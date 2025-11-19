@@ -15,9 +15,11 @@ try:
     import numpy as np
     import ffmpeg
     DEPENDENCIES_AVAILABLE = True
+    MISSING_DEPENDENCY = None
 except ImportError as e:
     DEPENDENCIES_AVAILABLE = False
     MISSING_DEPENDENCY = str(e)
+    print(f"Warning: Missing AI dependencies - running in simulation mode: {e}")
 
 class EnhancementProcessor:
     """
