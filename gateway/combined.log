@@ -1,0 +1,5 @@
+{"level":"info","message":"VideoX-Ai Gateway Server running on port 5000","timestamp":"2025-11-19T02:46:26.125Z"}
+{"level":"info","message":"Environment: development","timestamp":"2025-11-19T02:46:26.128Z"}
+{"level":"info","message":"Python Service URL: http://localhost:8000","timestamp":"2025-11-19T02:46:26.128Z"}
+{"level":"info","message":"Frontend URL: http://localhost:3000","timestamp":"2025-11-19T02:46:26.128Z"}
+{"level":"info","message":"SIGTERM received, shutting down gracefully","timestamp":"2025-11-19T02:46:35.822Z"}
