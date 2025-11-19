@@ -4,8 +4,36 @@ import tempfile
 import subprocess
 from pathlib import Path
 from typing import Optional, Tuple
-import cv2
-import numpy as np
+
+# Handle missing dependencies gracefully
+try:
+    import cv2
+    import numpy as np
+    CV2_AVAILABLE = True
+    NP_AVAILABLE = True
+except ImportError as e:
+    print(f"Warning: Missing dependency - {e}")
+    CV2_AVAILABLE = False
+    NP_AVAILABLE = False
+
+    # Create mock classes for testing
+    class MockCV2:
+        CAP_PROP_FPS = 0
+        CAP_PROP_FRAME_COUNT = 1
+        CAP_PROP_FRAME_WIDTH = 3
+        CAP_PROP_FRAME_HEIGHT = 4
+
+        @staticmethod
+        def VideoCapture(path):
+            raise RuntimeError("OpenCV not installed")
+
+    class MockNumpy:
+        @staticmethod
+        def array(x):
+            return x
+
+    cv2 = MockCV2()
+    np = MockNumpy()
 
 class VideoManager:
     """
