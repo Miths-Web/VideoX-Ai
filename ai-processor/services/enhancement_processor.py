@@ -357,7 +357,7 @@ class EnhancementProcessor:
             print(f"Restoration failed: {e}")
             return frame
 
-    async def _apply_frame_interpolation(self, frame1: np.ndarray, frame2: np.ndarray, settings) -> np.ndarray:
+    async def _apply_frame_interpolation(self, frame1: 'np.ndarray', frame2: 'np.ndarray', settings) -> 'np.ndarray':
         """
         Generate interpolated frame between two frames (simplified version)
         """
