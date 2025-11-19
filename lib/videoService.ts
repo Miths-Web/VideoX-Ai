@@ -163,16 +163,16 @@ export class VideoService {
       color_enhance: boolean;
       stabilize: boolean;
     }
-  ): Promise<{ task_id: string }> {
+  ): Promise<{ task_id: string; estimated_processing_time?: number }> {
     try {
       const formData = new FormData();
       formData.append('video', file);
       formData.append('enhancement_type', enhancementType);
       formData.append('resolution', settings.resolution);
       formData.append('fps', settings.fps);
-      formData.append('denoise', settings.denoise.toString());
-      formData.append('color_enhance', settings.color_enhance.toString());
-      formData.append('stabilize', settings.stabilize.toString());
+      formData.append('denoising', settings.denoise.toString());
+      formData.append('color_enhancement', settings.color_enhance.toString());
+      formData.append('stabilization', settings.stabilize.toString());
 
       const response = await fetch(`${this.API_BASE}/api/upload`, {
         method: 'POST',
@@ -180,12 +180,27 @@ export class VideoService {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
       }
 
-      return await response.json();
+      const result = await response.json();
+
+      if (!result.success) {
+        throw new Error(result.error || 'Upload failed');
+      }
+
+      return {
+        task_id: result.task_id,
+        estimated_processing_time: result.estimated_processing_time
+      };
     } catch (error) {
       console.error('Error enhancing video:', error);
+
+      if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+        throw new Error('Unable to connect to enhancement service. Please check your connection and try again.');
+      }
+
       throw error;
     }
   }
