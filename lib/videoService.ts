@@ -30,9 +30,9 @@ export interface VideoData {
 }
 
 export class VideoService {
-  private static API_BASE = process.env.NODE_ENV === 'production' 
-    ? 'https://your-repl-name.replit.app' 
-    : 'http://localhost:5000';
+  private static API_BASE = process.env.NODE_ENV === 'production'
+    ? process.env.NEXT_PUBLIC_BACKEND_URL || 'https://videox-ai-backend.onrender.com'
+    : process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000';
 
   static async createVideo(videoData: Omit<VideoData, 'id' | 'createdAt' | 'updatedAt'>): Promise<string> {
     try {
