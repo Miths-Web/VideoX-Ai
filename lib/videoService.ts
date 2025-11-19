@@ -274,7 +274,7 @@ export class VideoService {
     }
   }
 
-  static getEnhancedVideoUrl(filename: string): string {
-    return `${this.API_BASE}/outputs/${filename}`;
+  static getEnhancedVideoUrl(taskId: string): string {
+    return `${this.API_BASE}/api/download/${taskId}`;
   }
 }
