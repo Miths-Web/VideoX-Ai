@@ -17,7 +17,7 @@ const EnhancePage = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [enhancementType, setEnhancementType] = useState<string>('super_resolution');
   const [settings, setSettings] = useState({
-    resolution: '4k',
+    resolution: '4K',
     fps: '30',
     denoise: true,
     color_enhance: true,
