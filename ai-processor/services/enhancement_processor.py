@@ -260,7 +260,7 @@ class EnhancementProcessor:
         else:
             return frame  # No enhancement
 
-    async def _apply_super_resolution(self, frame: np.ndarray, settings) -> np.ndarray:
+    async def _apply_super_resolution(self, frame: 'np.ndarray', settings) -> 'np.ndarray':
         """
         Apply super resolution enhancement
         """
