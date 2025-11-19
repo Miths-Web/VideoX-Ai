@@ -245,7 +245,7 @@ class EnhancementProcessor:
                     # Copy original frame if enhancement fails
                     shutil.copy2(frame_file, enhanced_dir / frame_file.name)
 
-    async def _apply_enhancement(self, frame: np.ndarray, enhancement_type: str, settings) -> np.ndarray:
+    async def _apply_enhancement(self, frame: 'np.ndarray', enhancement_type: str, settings) -> 'np.ndarray':
         """
         Apply specific enhancement to a single frame
         """
