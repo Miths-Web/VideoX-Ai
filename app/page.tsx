@@ -66,69 +66,90 @@ export default function Home() {
   ];
 
   return (
-    <div className="pt-16">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/20">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 md:py-32">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 z-0" />
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-400/10 rounded-full blur-2xl" />
+        </div>
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial="hidden"
               animate={isVisible ? "visible" : "hidden"}
               variants={fadeIn}
-              className="space-y-6"
+              className="space-y-8"
             >
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="inline-block rounded-full bg-primary/10 px-3 py-1 text-sm text-primary"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600/10 to-purple-600/10 backdrop-blur-sm border border-blue-200/50 rounded-full px-4 py-2"
               >
-                AI-Powered Video Enhancement
+                <Sparkles className="w-4 h-4 text-blue-600" />
+                <span className="text-sm font-medium text-blue-700">🚀 Next-Gen AI Technology</span>
               </motion.div>
-              <motion.h1 
+
+              <motion.h1
                 variants={fadeIn}
-                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
+                className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
               >
-                Transform Your Videos with <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">AI Magic</span>
+                <span className="bg-gradient-to-br from-slate-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
+                  Transform Your
+                </span>
+                <br />
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Videos to 4K
+                </span>
               </motion.h1>
-              <motion.p 
+
+              <motion.p
                 variants={fadeIn}
-                className="text-lg md:text-xl text-muted-foreground max-w-xl"
+                className="text-xl md:text-2xl text-slate-600 max-w-2xl leading-relaxed"
               >
-                Enhance low-quality videos to stunning HD and 4K with our AI-powered super-resolution technology. No technical skills required.
+                Experience the power of AI video enhancement. Upscale, denoise, and restore your footage with cutting-edge technology.
               </motion.p>
-              <motion.div 
+
+              <motion.div
                 variants={fadeIn}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <Button size="lg" asChild>
-                  <Link href="/enhance" className="group">
-                    Enhance Your Video
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                <Button size="lg" asChild className="group relative overflow-hidden">
+                  <Link href="/enhance" className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur-md group-hover:blur-lg transition-all"></div>
+                    <span className="relative flex items-center text-lg font-semibold">
+                      Start Enhancing Now
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </span>
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link href="/demo">
-                    Watch Demo
+                <Button size="lg" variant="outline" asChild className="border-slate-200 hover:bg-slate-50">
+                  <Link href="/enhance">
+                    <Video className="mr-2 h-5 w-5" />
+                    Try Demo Video
                   </Link>
                 </Button>
               </motion.div>
-              <motion.div 
+
+              <motion.div
                 variants={fadeIn}
-                className="flex items-center space-x-4 text-sm text-muted-foreground"
+                className="flex flex-wrap items-center gap-6 text-sm text-slate-600"
               >
-                <div className="flex items-center">
-                  <CheckCircle2 className="mr-1 h-4 w-4 text-green-500" />
-                  <span>No watermarks</span>
+                <div className="flex items-center gap-2 bg-green-50 text-green-700 px-3 py-2 rounded-full">
+                  <CheckCircle2 className="h-4 w-4" />
+                  <span className="font-medium">No Watermarks</span>
                 </div>
-                <div className="flex items-center">
-                  <CheckCircle2 className="mr-1 h-4 w-4 text-green-500" />
-                  <span>Free trial available</span>
+                <div className="flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-2 rounded-full">
+                  <Zap className="h-4 w-4" />
+                  <span className="font-medium">Lightning Fast</span>
                 </div>
-                <div className="flex items-center">
-                  <CheckCircle2 className="mr-1 h-4 w-4 text-green-500" />
-                  <span>No credit card</span>
+                <div className="flex items-center gap-2 bg-purple-50 text-purple-700 px-3 py-2 rounded-full">
+                  <Shield className="h-4 w-4" />
+                  <span className="font-medium">Secure Processing</span>
                 </div>
               </motion.div>
             </motion.div>
